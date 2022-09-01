@@ -1,0 +1,40 @@
+#include <cs50.h>
+#include <stdio.h>
+
+int main(void)
+{
+    int height, row, column, hash_count, space_count, i, j, leftHash;
+
+    // this do loop prompts user to get valid int between decided range
+    do
+    {
+        height = get_int("Height: ");
+    }
+    while (height < 1 || height > 8);
+
+    for (row = 1; row <= height; row++)
+    {
+        hash_count = row;
+        space_count = height - hash_count;
+
+        for (i = 1; i <= space_count; i++) //this prints " " from each iteration
+        {
+            printf(" ");
+        }
+
+        for (j = 1; j <= hash_count; j++)
+        {
+            printf("#");
+        }
+
+        //until here it was the "less comfortable" version of the mario. i decided it will be easier if i just add the left allign
+        //version of it right after the left one printed for each iteration
+        printf("  ");
+
+        for (leftHash = 1; leftHash <= hash_count; leftHash++)
+        {
+            printf("#");
+        }
+        printf("\n");
+    }
+}
