@@ -7,8 +7,33 @@ int calculate_dimes(int cents);
 int calculate_nickels(int cents);
 int calculate_pennies(int cents);
 
-int main(void);
+int main(void)
+{
+    // Ask how many cents the customer is owed
+    int cents = get_cents();
 
+    // Calculate the number of quarters to give the customer
+    int quarters = calculate_quarters(cents);
+    cents = cents - quarters * 25;
+
+    // Calculate the number of dimes to give the customer
+    int dimes = calculate_dimes(cents);
+    cents = cents - dimes * 10;
+
+    // Calculate the number of nickels to give the customer
+    int nickels = calculate_nickels(cents);
+    cents = cents - nickels * 5;
+
+    // Calculate the number of pennies to give the customer
+    int pennies = calculate_pennies(cents);
+    cents = cents - pennies * 1;
+
+    // Sum coins
+    int coins = quarters + dimes + nickels + pennies;
+
+    // Print total number of coins to give the customer
+    printf("%i\n", coins);
+}
 
 int get_cents(void)
 {
@@ -16,66 +41,64 @@ int get_cents(void)
     int cents;
     do
     {
-        cents = get_int("Amount of cents we owe? ");
+        cents = get_int("Amount of cents we owe?: ");
     }
     while (cents < 0);
     return cents;
 }
 
-
 int calculate_quarters(int cents)
 {
-    // this one calculates how many quarters we'll give and subtracks value of the quarters from the cent value that customer gives
-    int quarters = 0;
-
+    // this one calculates how many quarters we'll give and subtracks value of the quarters
+    // from the cent value that customer gives and updates the count
+    int count = 0;
     while (cents >= 25)
     {
+        count++;
         cents = cents - 25;
-        quarters++;
+
     }
-    return quarters;
+    return count;
 }
 
 int calculate_dimes(int cents)
 {
-    // this one calculates how many dimes we'll give and subtracks value of the dimes from the cent value that customer gives
-    int dimes = 0;
-
+    // this one calculates how many dimes we'll give and subtracks value of the quarters
+    // from the cent value that customer gives and updates the count
+    int count = 0;
     while (cents >= 10)
     {
+        count++;
         cents = cents - 10;
-        dimes++;
+
     }
-    return dimes;
+    return count;
 }
 
 int calculate_nickels(int cents)
 {
-    // this one calculates how many nickels we'll give and subtracks value of the nickels from the cent value that customer gives
-    int nickels = 0;
-
+    // this one calculates how many nickels we'll give and subtracks value of the quarters
+    // from the cent value that customer gives and updates the count
+    int count = 0;
     while (cents >= 5)
     {
+        count++;
         cents = cents - 5;
-        nickels++;
+
     }
-    return nickels;
+    return count;
 }
 
 int calculate_pennies(int cents)
 {
-    // this one calculates how many pennies we'll give and subtracks value of the pennies from the cent value that customer gives
-    int pennies = 0;
+    // this one calculates how many pennies we'll give and subtracks value of the quarters
+    // from the cent value that customer gives and updates the count
+    int count = 0;
     while (cents >= 1)
     {
+        count++;
         cents = cents - 1;
-        pennies++;
+
     }
-    return pennies;
+    return count;
 }
-
-    // this one calculates the total amount of coins we'll be giving;
-    int sumCoins = quarters + dimes + nickels + pennies;
-
-    // this prints the total coins will be giving to the customer
-    printf("%i\n", sumCoins);
