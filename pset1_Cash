@@ -1,0 +1,81 @@
+#include <cs50.h>
+#include <stdio.h>
+
+int get_cents(void);
+int calculate_quarters(int cents);
+int calculate_dimes(int cents);
+int calculate_nickels(int cents);
+int calculate_pennies(int cents);
+
+int main(void);
+
+
+int get_cents(void)
+{
+    // we're promting the user amount of cents we owe to the customer
+    int cents;
+    do
+    {
+        cents = get_int("Amount of cents we owe? ");
+    }
+    while (cents < 0);
+    return cents;
+}
+
+
+int calculate_quarters(int cents)
+{
+    // this one calculates how many quarters we'll give and subtracks value of the quarters from the cent value that customer gives
+    int quarters = 0;
+
+    while (cents >= 25)
+    {
+        cents = cents - 25;
+        quarters++;
+    }
+    return quarters;
+}
+
+int calculate_dimes(int cents)
+{
+    // this one calculates how many dimes we'll give and subtracks value of the dimes from the cent value that customer gives
+    int dimes = 0;
+
+    while (cents >= 10)
+    {
+        cents = cents - 10;
+        dimes++;
+    }
+    return dimes;
+}
+
+int calculate_nickels(int cents)
+{
+    // this one calculates how many nickels we'll give and subtracks value of the nickels from the cent value that customer gives
+    int nickels = 0;
+
+    while (cents >= 5)
+    {
+        cents = cents - 5;
+        nickels++;
+    }
+    return nickels;
+}
+
+int calculate_pennies(int cents)
+{
+    // this one calculates how many pennies we'll give and subtracks value of the pennies from the cent value that customer gives
+    int pennies = 0;
+    while (cents >= 1)
+    {
+        cents = cents - 1;
+        pennies++;
+    }
+    return pennies;
+}
+
+    // this one calculates the total amount of coins we'll be giving;
+    int sumCoins = quarters + dimes + nickels + pennies;
+
+    // this prints the total coins will be giving to the customer
+    printf("%i\n", sumCoins);
