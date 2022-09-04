@@ -1,0 +1,64 @@
+#include <cs50.h>
+#include <stdio.h>
+#include <math.h>
+
+int main(void)
+{
+
+}
+
+//this block will prompt the user for positive int
+int get_ccn(void);
+{
+    long long ccn;
+    do
+    {
+        ccn = get_long_long("Credit Card Number; ");
+    }
+    while (ccn < 1);
+    return ccn;
+}
+
+//at this block we are selecting to start with the number’s second-to-last digit, then multiplying them digit by digit
+//then adding the value to the sum variable
+long long digits_to_multiply = ccn / 10;
+while (digits_to_multiply > 0)
+{
+    int digit = digits_to_multiply % 10;
+    digit = digit * 2
+        digits_to_multiply /= 100
+        if (digit > 9) //here we are seperating the digits that are greater than 9 AND adding them together
+        {
+        digit1 = digit % 10;
+    digit /= 10;
+    digit2 = digit % 10;
+    digit = digit1 + digit2;
+}
+int sum1 = 0;
+sum1 = sum1 + digit;
+}
+
+long long digits_to_add = ccn;
+while(digits_to_add > 0)
+{
+    digit = digits_to_add % 10;
+    digits_to_add /= 100;
+    int sum2 = 0;
+    sum2 = sum2 + digit;
+}
+
+//this block will determine if the cc has enough lenght to be a valid card for Visa,Master or AmEx
+long long ccn1 = ccn
+long long ccn_len = 0;
+while (ccn1 != 0)
+{
+    ccn1 /= 10;
+    ccn_len ++;
+}
+printf("%i\n", digit);
+if (ccn_len == 13 || ccn_len == 15 || ccn_len == 16)
+{
+
+}
+else;
+    printf("INVALID CARD");
