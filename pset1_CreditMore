@@ -1,64 +1,88 @@
 #include <cs50.h>
 #include <stdio.h>
-#include <math.h>
 
 int main(void)
 {
-
-}
-
-//this block will prompt the user for positive int
-int get_ccn(void);
-{
-    long long ccn;
-    do
+    //long long will cover up to 19 digits i think?
+    long long number = get_long_long("Enter Credit Card Number: ");
+    long long check = number;
+    int ccnLen = 0;
+    int firstTwoDigits = 0;
+    //this block kinda does iteration on every number then increase the ccnLen by one
+    while (check > 0)
     {
-        ccn = get_long_long("Credit Card Number; ");
-    }
-    while (ccn < 1);
-    return ccn;
-}
-
-//at this block we are selecting to start with the number’s second-to-last digit, then multiplying them digit by digit
-//then adding the value to the sum variable
-long long digits_to_multiply = ccn / 10;
-while (digits_to_multiply > 0)
-{
-    int digit = digits_to_multiply % 10;
-    digit = digit * 2
-        digits_to_multiply /= 100
-        if (digit > 9) //here we are seperating the digits that are greater than 9 AND adding them together
+        //this if block will get me the first 2 digit and assign it to a variable that i can use it later
+        if (check < 100 && check > 10)
         {
-        digit1 = digit % 10;
-    digit /= 10;
-    digit2 = digit % 10;
-    digit = digit1 + digit2;
-}
-int sum1 = 0;
-sum1 = sum1 + digit;
+            firstTwoDigits = check;
+        }
+        ccnLen ++;
+        check /= 10;
+    }
+
+    if ((ccnLen != 13) && (ccnLen != 15) && (ccnLen != 16))
+    {
+        printf("INVALID\n");
+    }
+    else //luhn check
+    {
+        int a = 0; //this will be the sum of not underlined digirs
+        int b = 0; //this will be the sum of underlined digits
+        int c = 0;
+
+        while (check > 0)
+        {
+            a += check % 10;
+            check /= 10;
+
+            if (check > 0)
+            {
+                c = (check % 10) * 2;
+                b += (c / 10);
+                b += (c % 10);
+                check /= 10;
+            }
+        }
+        int remainder = (a + b) % 10; //to check the last digit is equal to 0 or not
+
+        if (remainder != 0)
+        {
+            printf("INVALID\n");
+        }
+        else if (remainder == 0)
+        {
+            if ((ccnLen == 15) && ((firstTwoDigits == 34) || (firstTwoDigits == 37)))
+            {
+                printf("AMEX\n");
+            }
+            else if ((ccnLen == 16) && ((firstTwoDigits == 51) || (firstTwoDigits == 52) || (firstTwoDigits == 53) || (firstTwoDigits == 54)
+                                        || (firstTwoDigits == 55)))
+            {
+                printf("MASTERCARD\n");
+            }
+            else if (((ccnLen == 13) || (ccnLen == 16)) && (firstTwoDigits / 10 == 4))
+            {
+                printf("VISA\n");
+            }
+            else
+            {
+                printf("INVALID\n");
+            }
+        }
+
+    }
 }
 
-long long digits_to_add = ccn;
-while(digits_to_add > 0)
-{
-    digit = digits_to_add % 10;
-    digits_to_add /= 100;
-    int sum2 = 0;
-    sum2 = sum2 + digit;
-}
 
-//this block will determine if the cc has enough lenght to be a valid card for Visa,Master or AmEx
-long long ccn1 = ccn
-long long ccn_len = 0;
-while (ccn1 != 0)
-{
-    ccn1 /= 10;
-    ccn_len ++;
-}
-printf("%i\n", digit);
-if (ccn_len == 13 || ccn_len == 15 || ccn_len == 16)
-{
+/*
 
-}
-else;
-    printf("INVALID CARD");
+okay this is working BUT still returning me this block;
+
+:( identifies 4111111111111113 as INVALID
+    expected "INVALID\n", not "VISA\n"
+:( identifies 4222222222223 as INVALID
+    expected "INVALID\n", not "VISA\n"
+    
+at this point I am clueless how to make progress, if anyone finds a solution I would be grateful..
+
+*/
