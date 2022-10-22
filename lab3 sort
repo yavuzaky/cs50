@@ -1,0 +1,12 @@
+sort1 uses: bubble sort
+
+How do you know?: to sort random and reversed ones took almost the same time meanwhile sorted one was always were multiple times fast
+
+sort2 uses: merge sort
+
+How do you know?: the other two sorting alghoritms were much more slower than this, therefore i assume that it is merge sort because
+it's big O notation is fastest 
+
+sort3 uses: selection sort
+
+How do you know?: no matter which list i sorted it almost took the same amount of time to finish. selection sort is known to have O(n^2)
